@@ -4,7 +4,7 @@
 
 replicaCount: 1
 
-containerPort: 80
+containerPort: "80"
 
 image:
   repository: nginx
@@ -13,7 +13,7 @@ image:
   tag: ""
 
 env:          
- ENV: "sandbox"
+ REACT_ENV: "sandbox"
 
 imagePullSecrets: []
 nameOverride: ""

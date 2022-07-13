@@ -4,6 +4,8 @@
 
 replicaCount: 1
 
+containerPort: 80
+
 image:
   repository: nginx
   pullPolicy: IfNotPresent

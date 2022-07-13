@@ -14,7 +14,7 @@ A Helm chart for Kubernetes
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | containerPort | int | `80` |  |
-| env.ENV | string | `"sandbox"` |  |
+| env.REACT_ENV | string | `"sandbox"` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"nginx"` |  |

@@ -15,6 +15,13 @@ image:
 env:          
  REACT_ENV: "sandbox"
 
+
+sealedSecret:
+  enabled: false
+  annotations: {}
+  encryptedData: {}
+
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""

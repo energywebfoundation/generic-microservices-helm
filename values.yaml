@@ -4,6 +4,10 @@
 
 replicaCount: 1
 
+# @TODO make probes configurable
+readinessProbe: true
+livenessProbe: true
+
 containerPort: 80
 
 image:

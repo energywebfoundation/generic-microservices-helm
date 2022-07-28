@@ -4,9 +4,11 @@
 
 replicaCount: 1
 
-# @TODO make probes configurable
-readinessProbe: true
-livenessProbe: true
+readinessProbe:
+  enabled: true
+
+livenessProbe: 
+  enabled: true
 
 containerPort: 80
 

@@ -6,9 +6,15 @@ replicaCount: 1
 
 readinessProbe:
   enabled: true
+  httpGet:
+    path: /
+    port: http
 
 livenessProbe: 
   enabled: true
+  httpGet:
+    path: /
+    port: http
 
 containerPort: 80
 

@@ -50,14 +50,14 @@ spec:
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
             httpGet:
-              path: /
-              port: http
+              path:  {{ .Values.livenessProbe.httpGet.path }}
+              port: {{ .Values.livenessProbe.httpGet.port }}
           {{- end }}
           {{- if .Values.readinessProbe.enabled }}
           readinessProbe:
             httpGet:
-              path: /
-              port: http
+              path:  {{ .Values.readinessProbe.httpGet.path }}
+              port: {{ .Values.readinessProbe.httpGet.port }}
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

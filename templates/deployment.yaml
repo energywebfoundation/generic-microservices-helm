@@ -52,12 +52,22 @@ spec:
             httpGet:
               path:  {{ .Values.livenessProbe.httpGet.path }}
               port: {{ .Values.livenessProbe.httpGet.port }}
+              scheme: {{ .Values.readinessProbe.httpGet.scheme }}  
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }} 
+            successThreshold: {{ .Values.livenessProbe.successThreshold }} 
+            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }} 
+            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}               
           {{- end }}
           {{- if .Values.readinessProbe.enabled }}
           readinessProbe:
             httpGet:
               path:  {{ .Values.readinessProbe.httpGet.path }}
-              port: {{ .Values.readinessProbe.httpGet.port }}
+              port: {{ .Values.readinessProbe.httpGet.port }}  
+              scheme: {{ .Values.readinessProbe.httpGet.scheme }}  
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }} 
+            successThreshold: {{ .Values.readinessProbe.successThreshold }} 
+            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }} 
+            periodSeconds: {{ .Values.readinessProbe.periodSeconds }} 
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

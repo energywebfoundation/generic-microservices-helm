@@ -5,7 +5,7 @@
 replicaCount: 1
 
 readinessProbe:
-  enabled: true
+  enabled: false
   httpGet:
     path: /
     port: http
@@ -16,7 +16,7 @@ readinessProbe:
   initialDelaySeconds: 60
 
 livenessProbe: 
-  enabled: true
+  enabled: false
   httpGet:
     path: /
     port: http

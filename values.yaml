@@ -27,7 +27,7 @@ livenessProbe:
   initialDelaySeconds: 60
 
 pvc: 
-  enabled: true
+  enabled: false
   accessModes: ReadWriteOnce
   storageClassName: default
   storage: 20Gi

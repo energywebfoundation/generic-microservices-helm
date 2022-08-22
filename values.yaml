@@ -26,6 +26,14 @@ livenessProbe:
   timeoutSeconds: 10
   initialDelaySeconds: 60
 
+pvc: 
+  enabled: true
+  accessModes: ReadWriteOnce
+  storageClassName: default
+  storage: 20Gi
+  mountPath: "/tmp"
+
+
 containerPort: 80
 
 image:

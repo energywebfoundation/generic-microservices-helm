@@ -5,7 +5,7 @@
 replicaCount: 1
 
 readinessProbe:
-  enabled: true
+  enabled: false
   httpGet:
     path: /
     port: http
@@ -16,7 +16,7 @@ readinessProbe:
   initialDelaySeconds: 60
 
 livenessProbe: 
-  enabled: true
+  enabled: false
   httpGet:
     path: /
     port: http
@@ -25,6 +25,14 @@ livenessProbe:
   successThreshold: 1
   timeoutSeconds: 10
   initialDelaySeconds: 60
+
+pvc: 
+  enabled: false
+  accessModes: ReadWriteOnce
+  storageClassName: default
+  storage: 20Gi
+  mountPath: "/tmp"
+
 
 containerPort: 80
 

@@ -71,6 +71,17 @@ spec:
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.pvc.enabled }}
+          volumeMounts:
+            - mountPath: {{ .Values.pvc.mountPath }}
+              name: {{ include "microservice.fullname" . }}-volume
+          {{- end }}
+      {{- if .Values.pvc.enabled }}    
+      volumes:
+        - name: {{ include "microservice.fullname" . }}-volume
+          persistentVolumeClaim:
+            claimName: {{ include "microservice.fullname" . }}-claim
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

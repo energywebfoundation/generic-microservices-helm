@@ -4,6 +4,8 @@
 
 replicaCount: 1
 
+restartPolicy: Always
+
 readinessProbe:
   enabled: false
   httpGet:

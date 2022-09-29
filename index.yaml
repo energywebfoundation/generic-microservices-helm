@@ -3,12 +3,22 @@ entries:
   microservice:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-07-22T12:52:01.527496729+01:00"
+    created: "2022-09-30T11:13:07.151363+13:00"
     description: A Helm chart for Kubernetes
-    digest: f179b8d79dac20f2c61b5662f4142f415f9a63dd31afb11371005d5f003a3711
+    digest: 94fbd349b0a5c8e99c3f0730f5ac0a913b42d03a6326bd82285aeac8bfa8d7e1
+    name: microservice
+    type: application
+    urls:
+    - https://energywebfoundation.github.io/generic-microservices-helm/microservice-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-09-30T11:13:07.15061+13:00"
+    description: A Helm chart for Kubernetes
+    digest: 6ed9702628bf09aaf40784c0ffc9c8dc1616ed17b73201b22623dd50eda5958a
     name: microservice
     type: application
     urls:
     - https://energywebfoundation.github.io/generic-microservices-helm/microservice-0.1.0.tgz
     version: 0.1.0
-generated: "2022-07-22T12:52:01.526871693+01:00"
+generated: "2022-09-30T11:13:07.149349+13:00"

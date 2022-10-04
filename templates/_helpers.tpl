@@ -51,14 +51,6 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
-Extra labels
-*/}}
-{{- with .Values.extraLabels }}
-{{ toYaml . }}
-{{- end }}
-{{- end }}
-
-{{/*
 Create the name of the service account to use
 */}}
 {{- define "microservice.serviceAccountName" -}}

@@ -128,3 +128,6 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# -- Extra lables to be added to all resources
+extraLabels: {}

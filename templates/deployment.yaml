@@ -5,8 +5,10 @@ metadata:
   labels:
     {{- include "microservice.labels" . | nindent 4 }}
 spec:
+  strategy:
+    type: {{ .Values.deploymentStrategy }}
   {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.replicaCount }} 
   {{- end }}
   selector:
     matchLabels:

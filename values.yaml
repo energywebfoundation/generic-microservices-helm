@@ -4,6 +4,8 @@
 
 replicaCount: 1
 
+deploymentStrategy: RollingUpdate
+
 restartPolicy: Always
 
 readinessProbe:
@@ -126,3 +128,6 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# -- Extra lables to be added to all resources
+extraLabels: {}

@@ -130,4 +130,9 @@ tolerations: []
 affinity: {}
 
 # -- Extra lables to be added to all resources
-extraLabels: {}
+extraLabels:
+  energyweb.org/project: "microservice"
+  energyweb.org/app: "generic-microservice-helm"
+  energyweb.org/repository: "generic-microservices-helm"
+  energyweb.org/createdBy: "TimothyOlaleke"
+  energyweb.org/jira: "DOI-2017"

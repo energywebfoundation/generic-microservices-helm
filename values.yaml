@@ -8,6 +8,8 @@ deploymentStrategy: RollingUpdate
 
 restartPolicy: Always
 
+terminationGracePeriodSeconds: 30
+
 readinessProbe:
   enabled: false
   httpGet:

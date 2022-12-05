@@ -87,7 +87,8 @@ spec:
             - mountPath: {{ .Values.pvc.mountPath }}
               name: {{ include "microservice.fullname" . }}-volume
           {{- end }}
-      {{- if .Values.pvc.enabled }}    
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+      {{- if .Values.pvc.enabled }}
       volumes:
         - name: {{ include "microservice.fullname" . }}-volume
           persistentVolumeClaim:

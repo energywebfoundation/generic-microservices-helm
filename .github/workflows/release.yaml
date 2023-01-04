@@ -63,7 +63,7 @@ jobs:
           username: ${{ github.actor }}
           access-token: ${{ secrets.GITHUB_TOKEN }}
           force: true
-          chart-folder: .
+          chart-folder: ./
 
   # publish:
   #   name: Publish helm chart to GHCR

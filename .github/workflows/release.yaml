@@ -46,15 +46,16 @@ jobs:
     needs: [push-tag]
 
     steps:
-      # - name: Build Changelog
-      #   id: github_release
-      #   uses: mikepenz/release-changelog-builder-action@v3.5.0
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build Changelog
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v3.5.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1.12.0
         with:
           tag: ${{  needs.push-tag.outputs.chart-version  }}
           name: Release ${{  needs.push-tag.outputs.chart-version  }}
-          body: ${{  needs.push-tag.outputs.changelog  }}
+          # body: ${{  needs.push-tag.outputs.changelog  }}
+          body: ${{  steps.github_release.outputs.changelog  }}

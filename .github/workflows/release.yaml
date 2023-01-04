@@ -17,52 +17,40 @@ jobs:
         with:
           access_token: ${{ github.token }}
   
-  # push-tag:
-  #   name: Push tag
-  #   runs-on: ubuntu-latest
-  #   needs: [cancel-previous]
-  #   outputs:
-  #     chart-version: ${{ steps.chart-version.outputs.CHART_VERSION }}
-  #     changelog: ${{ steps.tag_version.outputs.changelog }}
-  #   steps:
-  #     - uses: actions/checkout@v2
-
-  #     - name: Get Chart Version
-  #       id: chart-version
-  #       run: |
-  #         echo "CHART_VERSION=$(grep "version:" Chart.yaml | awk '{print $2}')" >> $GITHUB_OUTPUT
-
-  #     - name: Bump version and push tag
-  #       id: tag_version
-  #       uses: mathieudutour/github-tag-action@v6.1
-  #       with:
-  #         github_token: ${{ secrets.GITHUB_TOKEN }}
-  #         release_branches: master
-  #         custom_tag: ${{ steps.chart-version.outputs.CHART_VERSION }}
-
-  release:
-    name: Release helm chart
+  push-tag:
+    name: Push tag
     runs-on: ubuntu-latest
     needs: [cancel-previous]
-
+    outputs:
+      chart-version: ${{ steps.chart-version.outputs.CHART_VERSION }}
+      changelog: ${{ steps.tag_version.outputs.changelog }}
+      tag: ${{ steps.tag_version.outputs.new_tag }}
     steps:
+      - uses: actions/checkout@v2
+
       - name: Get Chart Version
         id: chart-version
         run: |
           echo "CHART_VERSION=$(grep "version:" Chart.yaml | awk '{print $2}')" >> $GITHUB_OUTPUT
 
-      - name: Build Changelog
-        id: github_release
-        uses: mikepenz/release-changelog-builder-action@v3.5.0
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.1
         with:
-          commitMode: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          release_branches: master
+          custom_tag: ${{ steps.chart-version.outputs.CHART_VERSION }}
+          custom_release_rules: major:major:Major Changes,minor:minor:Minor Changes,chore:patch:Chores
 
+  release:
+    name: Release helm chart
+    runs-on: ubuntu-latest
+    needs: [push-tag]
+
+    steps:
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1.12.0
         with:
-          tag: v${{ steps.chart-version.outputs.CHART_VERSION }}
-          name: Release v${{ steps.chart-version.outputs.CHART_VERSION }}
-          # body: ${{  needs.push-tag.outputs.changelog  }}
-          body: ${{  steps.github_release.outputs.changelog  }}
+          tag: ${{  needs.push-tag.outputs.tag  }}
+          name: Release ${{  needs.push-tag.outputs.tag  }}
+          body: ${{  needs.push-tag.outputs.changelog  }}

@@ -50,9 +50,7 @@ image:
   command: []
   args: []
 
-env:          
- REACT_ENV: "sandbox"
-
+env: {}
 
 sealedSecret:
   enabled: false

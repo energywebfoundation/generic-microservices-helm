@@ -82,7 +82,9 @@ jobs:
           echo "CHART_NAME=$(grep "name:" Chart.yaml | awk '{print $2}')" >> $GITHUB_OUTPUT
 
       - name: Publish Helm Chart
+        env:
+          PACKAGE_NAME: ${{ steps.chart-name.outputs.CHART_NAME }}-${{  needs.push-tag.outputs.chart-version  }}
         run: |
           helm package .
-          helm push ${{ steps.chart-name.outputs.CHART_NAME }}-${{  needs.push-tag.outputs.chart-version  }}.tgz oci://ghcr.io/${{ github.repository }}
-          rm ${{ steps.chart-name.outputs.CHART_NAME }}-${{  needs.push-tag.outputs.chart-version  }}.tgz
+          helm push $PACKAGE_NAME.tgz oci://ghcr.io/${{ github.repository }}
+          rm $PACKAGE_NAME.tgz

@@ -84,5 +84,5 @@ jobs:
       - name: Publish Helm Chart
         run: |
           helm package .
-          helm push ${{ steps.chart-name.outputs.CHART_NAME }}-${{  needs.push-tag.outputs.chart-version  }}.tgz oci://ghcr.io/michalziobro/generic-microservices-helm
+          helm push ${{ steps.chart-name.outputs.CHART_NAME }}-${{  needs.push-tag.outputs.chart-version  }}.tgz oci://ghcr.io/${{ github.repository }}
           rm ${{ steps.chart-name.outputs.CHART_NAME }}-${{  needs.push-tag.outputs.chart-version  }}.tgz

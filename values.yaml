@@ -21,7 +21,7 @@ readinessProbe:
   timeoutSeconds: 10
   initialDelaySeconds: 60
 
-livenessProbe: 
+livenessProbe:
   enabled: false
   httpGet:
     path: /
@@ -32,7 +32,7 @@ livenessProbe:
   timeoutSeconds: 10
   initialDelaySeconds: 60
 
-pvc: 
+pvc:
   enabled: false
   accessModes: ReadWriteOnce
   storageClassName: default

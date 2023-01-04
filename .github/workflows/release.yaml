@@ -55,36 +55,46 @@ jobs:
           name: Release ${{  needs.push-tag.outputs.tag  }}
           body: ${{  needs.push-tag.outputs.changelog  }}
 
-  publish:
-    name: Publish helm chart to GHCR
-    runs-on: ubuntu-latest
-    needs: [push-tag, release]
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: install helm
-        uses: Azure/setup-helm@v3.5
+      - name: Push Helm chart to OCI compatible registry (Github)
+        uses: bsord/helm-push@4.2.0
         with:
-          # Version of helm
-          version: v3.10.3 # default is latest
-      
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
+          useOCIRegistry: true
+          registry-url:  oci://ghcr.io/${{ github.repository }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          access-token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
+          chart-folder: .
 
-      - name: Get Chart name
-        id: chart-name
-        run: |
-          echo "CHART_NAME=$(grep "name:" Chart.yaml | awk '{print $2}')" >> $GITHUB_OUTPUT
+  # publish:
+  #   name: Publish helm chart to GHCR
+  #   runs-on: ubuntu-latest
+  #   needs: [push-tag, release]
 
-      - name: Publish Helm Chart
-        env:
-          PACKAGE_NAME: ${{ steps.chart-name.outputs.CHART_NAME }}-${{  needs.push-tag.outputs.chart-version  }}
-        run: |
-          helm package .
-          helm push $PACKAGE_NAME.tgz oci://ghcr.io/${{ github.repository }}
-          rm $PACKAGE_NAME.tgz
+  #   steps:
+  #     - uses: actions/checkout@v2
+
+  #     - name: install helm
+  #       uses: Azure/setup-helm@v3.5
+  #       with:
+  #         # Version of helm
+  #         version: v3.10.3 # default is latest
+      
+  #     - name: Login to GitHub Container Registry
+  #       uses: docker/login-action@v2
+  #       with:
+  #         registry: ghcr.io
+  #         username: ${{ github.actor }}
+  #         password: ${{ secrets.GITHUB_TOKEN }}
+
+  #     - name: Get Chart name
+  #       id: chart-name
+  #       run: |
+  #         echo "CHART_NAME=$(grep "name:" Chart.yaml | awk '{print $2}')" >> $GITHUB_OUTPUT
+
+  #     - name: Publish Helm Chart
+  #       env:
+  #         PACKAGE_NAME: ${{ steps.chart-name.outputs.CHART_NAME }}-${{  needs.push-tag.outputs.chart-version  }}
+  #       run: |
+  #         helm package .
+  #         helm push $PACKAGE_NAME.tgz oci://ghcr.io/${{ github.repository }}
+  #         rm $PACKAGE_NAME.tgz

@@ -4,6 +4,6 @@ repos:
     hooks:
       - id: helm-docs
   - repo: https://github.com/gruntwork-io/pre-commit
-    rev: v0.1.17
+    rev: v0.0.9
     hooks:
     - id: helmlint

@@ -19,6 +19,15 @@ Beginning in Helm v3.8.0, OCI support is [enabled by default](https://helm.sh/do
 helm install oci://ghcr.io/michalziobro/generic-microservices-helm/microservice --generate-name
 ```
 
+### Pre-commit hook
+
+Make sure you [install the pre-commit binary](https://pre-commit.com/#install). Then run:
+
+```
+pre-commit install
+pre-commit install-hooks
+```
+
 ## Values
 
 | Key | Type | Default | Description |

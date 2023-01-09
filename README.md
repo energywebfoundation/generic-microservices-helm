@@ -1,4 +1,4 @@
-# microservice
+# generic-microservice-helm
 
 ![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.0](https://img.shields.io/badge/AppVersion-1.16.0-informational?style=flat-square)
 
@@ -16,7 +16,7 @@ This helm chart is published in [GitHub Packages](https://github.com/features/pa
 Beginning in Helm v3.8.0, OCI support is [enabled by default](https://helm.sh/docs/topics/registries/).
 
 ```
-helm install oci://ghcr.io/michalziobro/generic-microservices-helm/microservice --generate-name
+helm install oci://ghcr.io/energywebfoundation/generic-microservice-helm --generate-name
 ```
 
 ### Pre-commit hook

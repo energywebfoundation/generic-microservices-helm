@@ -1,6 +1,14 @@
 apiVersion: v2
-name: microservice
-description: A Helm chart for Kubernetes
+name: generic-microservice-helm
+description: Generic helm chart for Energy Web Foundation microservices
+
+keywords:
+  - EnergyWeb
+  - blockchain
+
+maintainers:
+  - name: EWF DevOps Team
+    email: devops@energyweb.org
 
 # A chart can be either an 'application' or a 'library' chart.
 #

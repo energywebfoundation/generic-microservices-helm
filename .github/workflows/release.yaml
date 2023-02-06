@@ -16,7 +16,7 @@ jobs:
       - uses: styfle/cancel-workflow-action@0.11.0
         with:
           access_token: ${{ github.token }}
-  
+
   push-tag:
     name: Push tag
     runs-on: ubuntu-latest
@@ -31,7 +31,7 @@ jobs:
       - name: Get Chart Version
         id: chart-version
         run: |
-          echo "CHART_VERSION=$(grep "version:" Chart.yaml | awk '{print $2}')" >> $GITHUB_OUTPUT
+          echo "CHART_VERSION=$(grep "version:" Chart.yaml | awk '{print $2}' | head -n 1)" >> $GITHUB_OUTPUT
 
       - name: Bump version and push tag
         id: tag_version

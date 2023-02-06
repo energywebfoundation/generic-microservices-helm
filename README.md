@@ -1,6 +1,6 @@
 # generic-microservice-helm
 
-![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.0](https://img.shields.io/badge/AppVersion-1.16.0-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.0](https://img.shields.io/badge/AppVersion-1.16.0-informational?style=flat-square)
 
 Generic helm chart for Energy Web Foundation microservices
 
@@ -8,7 +8,13 @@ Generic helm chart for Energy Web Foundation microservices
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| EWF DevOps Team | <devops@energyweb.org> |  |
+| EWF DevOps Team | devops@energyweb.org |  |
+
+## Requirements
+
+| Repository | Name | Version |
+|------------|------|---------|
+| https://charts.bitnami.com/bitnami | common | 2.2.2 |
 
 ## Installing the chart
 
@@ -37,7 +43,7 @@ pre-commit install-hooks
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
-| containerPort | int | `80` |  |
+| container.ports.http | int | `80` |  |
 | deploymentStrategy | string | `"RollingUpdate"` |  |
 | env | object | `{}` |  |
 | extraLabels | object | `{}` | Extra lables to be added to all resources |
@@ -47,6 +53,7 @@ pre-commit install-hooks
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"nginx"` |  |
 | image.tag | string | `""` |  |
+| image.tty.enabled | bool | `false` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |
@@ -87,10 +94,12 @@ pre-commit install-hooks
 | sealedSecret.enabled | bool | `false` |  |
 | sealedSecret.encryptedData | object | `{}` |  |
 | securityContext | object | `{}` |  |
-| service.port | int | `80` |  |
+| service.ports[0].name | string | `"http"` |  |
+| service.ports[0].port | int | `80` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
+| sidecars | list | `[]` |  |
 | terminationGracePeriodSeconds | int | `30` |  |
 | tolerations | list | `[]` |  |

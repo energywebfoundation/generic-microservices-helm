@@ -8,7 +8,7 @@ spec:
   strategy:
     type: {{ .Values.deploymentStrategy }}
   {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }} 
+  replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
@@ -36,10 +36,16 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.image.tty.enabled }}
+          stdin: true
+          tty: true
+          {{- end }}
           ports:
-            - name: http
-              containerPort: {{ .Values.containerPort }}
+          {{- range $key, $value := $.Values.container.ports }}
+            - name: {{ $key }}
+              containerPort: {{ $value }}
               protocol: TCP
+          {{- end }}
           {{- with .Values.image.command }}
           command:
             {{- toYaml . | nindent 12 }}
@@ -48,7 +54,7 @@ spec:
           args:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          env:          
+          env:
           {{- range $key, $val := .Values.env }}
             - name: {{ $key }}
               value: {{ $val | quote }}
@@ -63,25 +69,28 @@ spec:
             httpGet:
               path:  {{ .Values.livenessProbe.httpGet.path }}
               port: {{ .Values.livenessProbe.httpGet.port }}
-              scheme: {{ .Values.readinessProbe.httpGet.scheme }}  
-            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }} 
-            successThreshold: {{ .Values.livenessProbe.successThreshold }} 
-            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }} 
-            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}               
+              scheme: {{ .Values.readinessProbe.httpGet.scheme }}
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+            successThreshold: {{ .Values.livenessProbe.successThreshold }}
+            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
           {{- end }}
           {{- if .Values.readinessProbe.enabled }}
           readinessProbe:
             httpGet:
               path:  {{ .Values.readinessProbe.httpGet.path }}
-              port: {{ .Values.readinessProbe.httpGet.port }}  
-              scheme: {{ .Values.readinessProbe.httpGet.scheme }}  
-            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }} 
-            successThreshold: {{ .Values.readinessProbe.successThreshold }} 
-            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }} 
-            periodSeconds: {{ .Values.readinessProbe.periodSeconds }} 
+              port: {{ .Values.readinessProbe.httpGet.port }}
+              scheme: {{ .Values.readinessProbe.httpGet.scheme }}
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            successThreshold: {{ .Values.readinessProbe.successThreshold }}
+            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.sidecars }}
+          {{- include "common.tplvalues.render" ( dict "value" .Values.sidecars "context" $) | nindent 8 }}
+          {{- end }}
           {{- if .Values.pvc.enabled }}
           volumeMounts:
             - mountPath: {{ .Values.pvc.mountPath }}

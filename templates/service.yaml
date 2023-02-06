@@ -1,3 +1,4 @@
+{{ $servicePorts := .Values.service.ports }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -7,9 +8,11 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
+  {{- range $key, $value := $servicePorts }}
+    - port: {{ .port }}
+      targetPort: {{ .name }}
       protocol: TCP
-      name: http
+      name: {{ .name }}
+  {{- end }}
   selector:
     {{- include "microservice.selectorLabels" . | nindent 4 }}

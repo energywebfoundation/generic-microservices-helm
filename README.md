@@ -8,7 +8,7 @@ Generic helm chart for Energy Web Foundation microservices
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| EWF DevOps Team | <devops@energyweb.org> |  |
+| EWF DevOps Team | devops@energyweb.org |  |
 
 ## Installing the chart
 
@@ -37,7 +37,7 @@ pre-commit install-hooks
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
-| containerPort | int | `80` |  |
+| container.ports.http | int | `80` |  |
 | deploymentStrategy | string | `"RollingUpdate"` |  |
 | env | object | `{}` |  |
 | extraLabels | object | `{}` | Extra lables to be added to all resources |
@@ -47,6 +47,7 @@ pre-commit install-hooks
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"nginx"` |  |
 | image.tag | string | `""` |  |
+| image.tty.enabled | bool | `true` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |
@@ -87,7 +88,8 @@ pre-commit install-hooks
 | sealedSecret.enabled | bool | `false` |  |
 | sealedSecret.encryptedData | object | `{}` |  |
 | securityContext | object | `{}` |  |
-| service.port | int | `80` |  |
+| service.ports[0].name | string | `"http"` |  |
+| service.ports[0].port | int | `80` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |

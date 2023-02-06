@@ -21,7 +21,7 @@ readinessProbe:
   timeoutSeconds: 10
   initialDelaySeconds: 60
 
-livenessProbe: 
+livenessProbe:
   enabled: false
   httpGet:
     path: /
@@ -32,7 +32,7 @@ livenessProbe:
   timeoutSeconds: 10
   initialDelaySeconds: 60
 
-pvc: 
+pvc:
   enabled: false
   accessModes: ReadWriteOnce
   storageClassName: default
@@ -40,7 +40,9 @@ pvc:
   mountPath: "/tmp"
 
 
-containerPort: 80
+container:
+  ports:
+    http: 80
 
 image:
   repository: nginx
@@ -49,10 +51,10 @@ image:
   tag: ""
   command: []
   args: []
+  tty:
+    enabled: false
 
-env:          
- REACT_ENV: "sandbox"
-
+env: {}
 
 sealedSecret:
   enabled: false
@@ -88,7 +90,9 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  ports:
+    - port: 80
+      name: http
 
 ingress:
   enabled: false
@@ -133,3 +137,13 @@ affinity: {}
 
 # -- Extra lables to be added to all resources
 extraLabels: {}
+
+sidecars: []
+# e.g.
+# sidecars:
+#   - name: your-image-name
+#     image: your-image
+#     imagePullPolicy: Always
+#     ports:
+#       - name: portname
+#         containerPort: 1234

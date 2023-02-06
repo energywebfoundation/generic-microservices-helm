@@ -28,6 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      # Take the 1st version from Chart.yaml
       - name: Get Chart Version
         id: chart-version
         run: |

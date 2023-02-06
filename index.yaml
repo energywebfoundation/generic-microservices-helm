@@ -5,7 +5,7 @@ entries:
       category: Infrastructure
     apiVersion: v2
     appVersion: 2.2.2
-    created: "2023-02-06T12:35:45.511956707-05:00"
+    created: "2023-02-06T13:24:40.915875153-05:00"
     description: A Library Helm Chart for grouping common logic between bitnami charts.
       This chart is not deployable by itself.
     digest: d589f61a6529a986b5294bb76843431b8b0ab5816d3876d0b0fd631b8cc55ebe
@@ -31,7 +31,29 @@ entries:
   microservice:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-06T12:35:45.510801039-05:00"
+    created: "2023-02-06T13:24:40.914789487-05:00"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.2.2
+    description: Generic helm chart for Energy Web Foundation microservices
+    digest: 7851019ff1b863ccb27fcc851b574d30a64307cbe65965e1f478efa67105c34e
+    keywords:
+    - EnergyWeb
+    - Blockchain
+    maintainers:
+    - email: devops@energyweb.org
+      name: EWF DevOps Team
+    name: microservice
+    type: application
+    urls:
+    - https://energywebfoundation.github.io/generic-microservices-helm/microservice-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-02-06T13:24:40.909121275-05:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -53,7 +75,7 @@ entries:
     version: 1.0.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-06T12:35:45.505798867-05:00"
+    created: "2023-02-06T13:24:40.902845132-05:00"
     description: A Helm chart for Kubernetes
     digest: 2b2209cf4a6d80f4fbf3beabaec1c6fd727e0c106b87195098d28996417a02e8
     name: microservice
@@ -63,7 +85,7 @@ entries:
     version: 0.1.3
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-06T12:35:45.501865485-05:00"
+    created: "2023-02-06T13:24:40.900434961-05:00"
     description: A Helm chart for Kubernetes
     digest: ed35af6331b25576a7b9e2356ecec62b87ddd1c7d5d21da4bf73c7c4ed7f3dca
     name: microservice
@@ -73,7 +95,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-06T12:35:45.500322776-05:00"
+    created: "2023-02-06T13:24:40.898639267-05:00"
     description: A Helm chart for Kubernetes
     digest: 94fbd349b0a5c8e99c3f0730f5ac0a913b42d03a6326bd82285aeac8bfa8d7e1
     name: microservice
@@ -83,7 +105,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-06T12:35:45.498808617-05:00"
+    created: "2023-02-06T13:24:40.896928258-05:00"
     description: A Helm chart for Kubernetes
     digest: 6ed9702628bf09aaf40784c0ffc9c8dc1616ed17b73201b22623dd50eda5958a
     name: microservice
@@ -91,4 +113,4 @@ entries:
     urls:
     - https://energywebfoundation.github.io/generic-microservices-helm/microservice-0.1.0.tgz
     version: 0.1.0
-generated: "2023-02-06T12:35:45.497573019-05:00"
+generated: "2023-02-06T13:24:40.895861646-05:00"

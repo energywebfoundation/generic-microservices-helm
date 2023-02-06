@@ -10,6 +10,12 @@ Generic helm chart for Energy Web Foundation microservices
 | ---- | ------ | --- |
 | EWF DevOps Team | devops@energyweb.org |  |
 
+## Requirements
+
+| Repository | Name | Version |
+|------------|------|---------|
+| https://charts.bitnami.com/bitnami | common | 2.x.x |
+
 ## Installing the chart
 
 This helm chart is published in [GitHub Packages](https://github.com/features/packages) OCI registry.
@@ -47,7 +53,7 @@ pre-commit install-hooks
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"nginx"` |  |
 | image.tag | string | `""` |  |
-| image.tty.enabled | bool | `true` |  |
+| image.tty.enabled | bool | `false` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |
@@ -94,5 +100,6 @@ pre-commit install-hooks
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
+| sidecars | list | `[]` |  |
 | terminationGracePeriodSeconds | int | `30` |  |
 | tolerations | list | `[]` |  |

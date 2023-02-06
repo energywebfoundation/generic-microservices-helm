@@ -4,7 +4,7 @@ description: Generic helm chart for Energy Web Foundation microservices
 
 keywords:
   - EnergyWeb
-  - blockchain
+  - Blockchain
 
 maintainers:
   - name: EWF DevOps Team

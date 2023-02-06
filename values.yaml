@@ -137,3 +137,13 @@ affinity: {}
 
 # -- Extra lables to be added to all resources
 extraLabels: {}
+
+sidecars: []
+# e.g.
+# sidecars:
+#   - name: your-image-name
+#     image: your-image
+#     imagePullPolicy: Always
+#     ports:
+#       - name: portname
+#         containerPort: 1234

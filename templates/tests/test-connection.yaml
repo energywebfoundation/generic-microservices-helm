@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "microservice.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "microservice.fullname" . }}:{{ index (index .Values.service.ports 0) "port" }}']
   restartPolicy: Never

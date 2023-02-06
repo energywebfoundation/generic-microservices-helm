@@ -1,6 +1,6 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "microservice.fullname" . -}}
-{{- $svcPort := .Values.service.port -}}
+{{- $svcPort := .Values.service.ports -}}
 {{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
   {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
   {{- $_ := set .Values.ingress.annotations "kubernetes.io/ingress.class" .Values.ingress.className}}
@@ -49,13 +49,14 @@ spec:
             backend:
               {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
               service:
-                name: {{ .backend.service.name }}
+              {{- range $key, $value := $svcPort }}
+                name: {{ $fullName }}
                 port:
-                  number: {{ .backend.service.port.number }}
-                  name: {{ .backend.service.port.name }}
+                  number: {{ .port }}
               {{- else }}
-              serviceName: {{ .backend.serviceName}}
-              servicePort: {{ .backend.servicePort }}
+              serviceName: {{ $fullName }}
+              servicePort: {{ .port }}
+              {{- end }}
               {{- end }}
           {{- end }}
     {{- end }}

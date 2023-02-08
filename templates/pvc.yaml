@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "microservice.fullname" . }}-claim
+  name: {{ .Values.pvc.claimName | default (printf "%s-claim" (include "microservice.fullname" .)) }}
 spec:
   storageClassName: {{ .Values.pvc.storageClassName }}
   accessModes:

@@ -45,12 +45,10 @@ pre-commit install-hooks
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | container.ports.http | int | `80` |  |
 | deploymentStrategy | string | `"RollingUpdate"` |  |
-| emptyDir.enabled | bool | `false` |  |
-| emptyDir.mountPath | string | `"/cache"` |  |
-| emptyDir.name | string | `"shared-vol"` |  |
-| emptyDir.sizeLimit | string | `"500Mi"` |  |
 | env | object | `{}` |  |
 | extraLabels | object | `{}` | Extra lables to be added to all resources |
+| extraVolumeMounts | list | `[]` |  |
+| extraVolumes | list | `[]` |  |
 | fullnameOverride | string | `""` |  |
 | image.args | list | `[]` |  |
 | image.command | list | `[]` |  |
@@ -79,10 +77,8 @@ pre-commit install-hooks
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | pvc.accessModes | string | `"ReadWriteOnce"` |  |
-| pvc.claimname | string | `"pv-claim"` |  |
 | pvc.enabled | bool | `false` |  |
 | pvc.mountPath | string | `"/tmp"` |  |
-| pvc.name | string | `"pvc-vol"` |  |
 | pvc.storage | string | `"20Gi"` |  |
 | pvc.storageClassName | string | `"default"` |  |
 | readinessProbe.enabled | bool | `false` |  |

@@ -91,28 +91,26 @@ spec:
           {{- if .Values.sidecars }}
           {{- include "common.tplvalues.render" ( dict "value" .Values.sidecars "context" $) | nindent 8 }}
           {{- end }}
-          {{- if .Values.emptyDir.enabled }}
-          volumeMounts:
-            - mountPath: {{ .Values.emptyDir.mountPath }}
-              name: {{ .Values.emptyDir.name | default (printf "%s-volume" (include "microservice.fullname" .)) }}
-          {{- end }}
           {{- if .Values.pvc.enabled }}
           volumeMounts:
             - mountPath: {{ .Values.pvc.mountPath }}
+              {{- if .Values.pvc.subPath }}
+              subPath: {{ .Values.pvc.subPath }}
+              {{- end }}
               name: {{ .Values.pvc.name | default (printf "%s-volume" (include "microservice.fullname" .)) }}
           {{- end }}
+          {{- if .Values.extraVolumeMounts }}
+          {{- include "common.tplvalues.render" ( dict "value" .Values.extraVolumeMounts "context" $) | nindent 12 }}
+          {{- end }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
-      {{- if .Values.emptyDir.enabled }}
-      volumes:
-        - name: {{ .Values.emptyDir.name | default (printf "%s-volume" (include "microservice.fullname" .)) }}
-          emptyDir:
-            sizeLimit: {{ .Values.emptyDir.sizeLimit }}
-      {{- end }}
       {{- if .Values.pvc.enabled }}
       volumes:
         - name: {{ .Values.pvc.name | default (printf "%s-volume" (include "microservice.fullname" .)) }}
           persistentVolumeClaim:
-            claimName: {{ .Values.pvc.claimname | default (printf "%s-claim" (include "microservice.fullname" .)) }}
+            claimName: {{ .Values.pvc.claimName | default (printf "%s-claim" (include "microservice.fullname" .)) }}
+        {{- if .Values.extraVolumes }}
+        {{- include "common.tplvalues.render" ( dict "value" .Values.extraVolumes "context" $) | nindent 8 }}
+        {{- end }}
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:

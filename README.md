@@ -1,6 +1,6 @@
 # generic-microservice-helm
 
-![Version: 1.0.2](https://img.shields.io/badge/Version-1.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.0](https://img.shields.io/badge/AppVersion-1.16.0-informational?style=flat-square)
+![Version: 1.0.3](https://img.shields.io/badge/Version-1.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.0](https://img.shields.io/badge/AppVersion-1.16.0-informational?style=flat-square)
 
 Generic helm chart for Energy Web Foundation microservices
 
@@ -45,6 +45,10 @@ pre-commit install-hooks
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | container.ports.http | int | `80` |  |
 | deploymentStrategy | string | `"RollingUpdate"` |  |
+| emptyDir.enabled | bool | `false` |  |
+| emptyDir.mountPath | string | `"/cache"` |  |
+| emptyDir.name | string | `"shared-vol"` |  |
+| emptyDir.sizeLimit | string | `"500Mi"` |  |
 | env | object | `{}` |  |
 | extraLabels | object | `{}` | Extra lables to be added to all resources |
 | fullnameOverride | string | `""` |  |
@@ -75,8 +79,10 @@ pre-commit install-hooks
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | pvc.accessModes | string | `"ReadWriteOnce"` |  |
+| pvc.claimname | string | `"pv-claim"` |  |
 | pvc.enabled | bool | `false` |  |
 | pvc.mountPath | string | `"/tmp"` |  |
+| pvc.name | string | `"pvc-vol"` |  |
 | pvc.storage | string | `"20Gi"` |  |
 | pvc.storageClassName | string | `"default"` |  |
 | readinessProbe.enabled | bool | `false` |  |

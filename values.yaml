@@ -34,10 +34,18 @@ livenessProbe:
 
 pvc:
   enabled: false
+  name: pvc-vol
+  claimname: pv-claim
   accessModes: ReadWriteOnce
   storageClassName: default
   storage: 20Gi
   mountPath: "/tmp"
+
+emptyDir:
+  enabled: false
+  name: shared-vol
+  mountPath: /cache
+  sizeLimit: 500Mi
 
 
 container:

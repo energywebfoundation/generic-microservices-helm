@@ -39,7 +39,6 @@ pvc:
   storage: 20Gi
   mountPath: "/tmp"
 
-
 container:
   ports:
     http: 80
@@ -147,3 +146,16 @@ sidecars: []
 #     ports:
 #       - name: portname
 #         containerPort: 1234
+
+## @param extraVolumeMounts Array to add extra mount
+extraVolumeMounts: []
+  # e.g
+  # - mountPath: /cache
+  #   name: volume-name
+
+## @param extraVolumes Array to add extra volumes
+extraVolumes: []
+  # e.g
+  # - name: volume-name
+  #   persistentVolumeClaim:
+  #     claimName: volume-claim-name

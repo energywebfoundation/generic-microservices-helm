@@ -52,6 +52,8 @@ image:
 
 env: {}
 
+envFrom: {}
+
 sealedSecret:
   enabled: false
   annotations: {}

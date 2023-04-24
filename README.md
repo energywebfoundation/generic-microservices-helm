@@ -1,6 +1,6 @@
 # generic-microservice-helm
 
-![Version: 1.0.3](https://img.shields.io/badge/Version-1.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.0](https://img.shields.io/badge/AppVersion-1.16.0-informational?style=flat-square)
+![Version: 1.0.4](https://img.shields.io/badge/Version-1.0.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.0](https://img.shields.io/badge/AppVersion-1.16.0-informational?style=flat-square)
 
 Generic helm chart for Energy Web Foundation microservices
 
@@ -8,7 +8,7 @@ Generic helm chart for Energy Web Foundation microservices
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| EWF DevOps Team | devops@energyweb.org |  |
+| EWF DevOps Team | <devops@energyweb.org> |  |
 
 ## Requirements
 
@@ -46,6 +46,7 @@ pre-commit install-hooks
 | container.ports.http | int | `80` |  |
 | deploymentStrategy | string | `"RollingUpdate"` |  |
 | env | object | `{}` |  |
+| envFrom | object | `{}` |  |
 | extraLabels | object | `{}` | Extra lables to be added to all resources |
 | extraVolumeMounts | list | `[]` |  |
 | extraVolumes | list | `[]` |  |

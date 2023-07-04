@@ -1,0 +1,54 @@
+apiVersion: v1
+entries:
+  common:
+  - annotations:
+      category: Infrastructure
+    apiVersion: v2
+    appVersion: 2.2.2
+    created: "2023-07-04T20:20:05.705171+01:00"
+    description: A Library Helm Chart for grouping common logic between bitnami charts.
+      This chart is not deployable by itself.
+    digest: d589f61a6529a986b5294bb76843431b8b0ab5816d3876d0b0fd631b8cc55ebe
+    home: https://github.com/bitnami/charts/tree/main/bitnami/common
+    icon: https://bitnami.com/downloads/logos/bitnami-mark.png
+    keywords:
+    - common
+    - helper
+    - template
+    - function
+    - bitnami
+    maintainers:
+    - name: Bitnami
+      url: https://github.com/bitnami/charts
+    name: common
+    sources:
+    - https://github.com/bitnami/charts
+    - https://www.bitnami.com/
+    type: library
+    urls:
+    - https://energywebfoundation.github.io/generic-microservices-helm/charts/common-2.2.2.tgz
+    version: 2.2.2
+  generic-microservice-helm:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-07-04T20:20:05.70477+01:00"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.2.2
+    description: Generic helm chart for Energy Web Foundation microservices
+    digest: 9765d4694b21d87ec33b773c2c676f04611ece21e3d38e37698982b1cecd8707
+    keywords:
+    - EnergyWeb
+    - Blockchain
+    maintainers:
+    - email: devops@energyweb.org
+      name: EWF DevOps Team
+    name: generic-microservice-helm
+    type: application
+    urls:
+    - https://energywebfoundation.github.io/generic-microservices-helm/generic-microservice-helm-1.0.6.tgz
+    version: 1.0.6
+generated: "2023-07-04T20:20:05.70363+01:00"

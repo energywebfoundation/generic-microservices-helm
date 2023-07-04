@@ -55,6 +55,8 @@ image:
 
 env: {}
 
+envFrom: {}
+
 sealedSecret:
   enabled: false
   annotations: {}
@@ -149,6 +151,27 @@ sidecars: []
 
 ## @param extraVolumeMounts Array to add extra mount
 extraVolumeMounts: []
+  # e.g
+  # - mountPath: /cache
+  #   name: volume-name
 
 ## @param extraVolumes Array to add extra volumes
 extraVolumes: []
+  # e.g
+  # - name: volume-name
+  #   persistentVolumeClaim:
+  #     claimName: volume-claim-name
+
+initContainers: {}
+# e.g.
+# initContainers:
+#   - name: init-container-name
+#     image: init-container-image
+#     command: ["init-container-command"]
+#     imagePullPolicy: Always
+#     env:
+#       - name: some-name
+#         value: some-value
+#     envFrom:
+#       - secretRef:
+#           name: some-secret-ref

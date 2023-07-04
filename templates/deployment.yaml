@@ -30,8 +30,12 @@ spec:
       restartPolicy: {{ .Values.restartPolicy }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+      {{- with .Values.initContainers }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: {{ include "microservice.name" . }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -60,6 +64,9 @@ spec:
               value: {{ $val | quote }}
           {{- end }}
           envFrom:
+          {{- with .Values.envFrom }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
             {{- if .Values.sealedSecret.enabled }}
             - secretRef:
                 name: {{ include "microservice.fullname" . }}-sealedsecret

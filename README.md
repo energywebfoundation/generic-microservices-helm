@@ -1,6 +1,6 @@
 # generic-microservice-helm
 
-![Version: 1.0.6](https://img.shields.io/badge/Version-1.0.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.0](https://img.shields.io/badge/AppVersion-1.16.0-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.0](https://img.shields.io/badge/AppVersion-1.16.0-informational?style=flat-square)
 
 Generic helm chart for Energy Web Foundation microservices
 
@@ -43,6 +43,8 @@ pre-commit install-hooks
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
+| configFiles | object | `{}` |  |
+| configFilesMountPath | string | `"/usr/share/config"` |  |
 | container.ports.http | int | `80` |  |
 | deploymentStrategy | string | `"RollingUpdate"` |  |
 | env | object | `{}` |  |
@@ -65,6 +67,7 @@ pre-commit install-hooks
 | ingress.hosts[0].paths[0].path | string | `"/"` |  |
 | ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` |  |
 | ingress.tls | list | `[]` |  |
+| initContainers | object | `{}` |  |
 | livenessProbe.enabled | bool | `false` |  |
 | livenessProbe.httpGet.path | string | `"/"` |  |
 | livenessProbe.httpGet.port | string | `"http"` |  |
@@ -106,4 +109,3 @@ pre-commit install-hooks
 | sidecars | list | `[]` |  |
 | terminationGracePeriodSeconds | int | `30` |  |
 | tolerations | list | `[]` |  |
-|  initContainers | object | `{}` |  |

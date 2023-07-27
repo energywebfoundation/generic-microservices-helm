@@ -175,3 +175,15 @@ initContainers: {}
 #     envFrom:
 #       - secretRef:
 #           name: some-secret-ref
+
+# Allows you to add any config files in specified mount path
+configFiles: {}
+  # config.yml: |
+  #   key: value
+  # example.json: |
+  #   {
+  #     "key1": "value1",
+  #     "key2": "value2"
+  #   }
+
+configFilesMountPath: /usr/share/config

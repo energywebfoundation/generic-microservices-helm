@@ -106,6 +106,7 @@ ingress:
       paths:
         - path: /
           pathType: ImplementationSpecific
+          pathServiceName: ""
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:

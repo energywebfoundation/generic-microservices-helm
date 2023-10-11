@@ -1,3 +1,4 @@
+{{- $servicePortName := .Values.service.portName -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -46,7 +47,11 @@ spec:
           {{- end }}
           ports:
           {{- range $key, $value := $.Values.container.ports }}
+            {{- if $servicePortName }}
+            - name: {{ $servicePortName }}
+            {{- else }}          
             - name: {{ $key }}
+          {{- end }}
               containerPort: {{ $value }}
               protocol: TCP
           {{- end }}

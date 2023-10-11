@@ -11,7 +11,11 @@ spec:
   ports:
   {{- range $key, $value := $servicePorts }}
     - port: {{ .port }}
+      {{- if $servicePortName }}
+      targetPort: {{ $servicePortName }}
+      {{- else }}    
       targetPort: {{ .name }}
+      {{- end }}
       protocol: TCP
       {{- if $servicePortName }}
       name: {{ $servicePortName }}

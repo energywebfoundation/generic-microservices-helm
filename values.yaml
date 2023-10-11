@@ -90,6 +90,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
+  portName: ""
   type: ClusterIP
   ports:
     - port: 80
@@ -106,7 +107,6 @@ ingress:
       paths:
         - path: /
           pathType: ImplementationSpecific
-          pathServiceName: ""
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:

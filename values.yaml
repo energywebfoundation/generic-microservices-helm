@@ -90,6 +90,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
+  portName: ""
   type: ClusterIP
   ports:
     - port: 80
@@ -98,7 +99,6 @@ service:
 ingress:
   enabled: false
   className: ""
-  servicePortName: ""
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"

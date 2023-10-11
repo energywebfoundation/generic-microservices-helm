@@ -1,5 +1,5 @@
 {{ $servicePorts := .Values.service.ports }}
-{{- $servicePortName := .Values.ingress.servicePortName -}}
+{{- $servicePortName := .Values.service.portName -}}
 apiVersion: v1
 kind: Service
 metadata:

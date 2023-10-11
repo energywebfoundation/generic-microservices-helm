@@ -5,7 +5,7 @@ entries:
       category: Infrastructure
     apiVersion: v2
     appVersion: 2.2.2
-    created: "2023-07-04T20:20:05.705171+01:00"
+    created: "2023-10-11T14:27:04.210519+01:00"
     description: A Library Helm Chart for grouping common logic between bitnami charts.
       This chart is not deployable by itself.
     digest: d589f61a6529a986b5294bb76843431b8b0ab5816d3876d0b0fd631b8cc55ebe
@@ -31,7 +31,29 @@ entries:
   generic-microservice-helm:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-07-04T20:20:05.70477+01:00"
+    created: "2023-10-11T14:27:04.200553+01:00"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.2.2
+    description: Generic helm chart for Energy Web Foundation microservices
+    digest: cb116332388c2892add012519ba104c77a202f34e92ea8fd9492fa00cca7e4eb
+    keywords:
+    - EnergyWeb
+    - Blockchain
+    maintainers:
+    - email: devops@energyweb.org
+      name: EWF DevOps Team
+    name: generic-microservice-helm
+    type: application
+    urls:
+    - https://energywebfoundation.github.io/generic-microservices-helm/generic-microservice-helm-1.2.0.tgz
+    version: 1.2.0
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-10-11T14:27:04.193957+01:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -51,4 +73,93 @@ entries:
     urls:
     - https://energywebfoundation.github.io/generic-microservices-helm/generic-microservice-helm-1.0.6.tgz
     version: 1.0.6
-generated: "2023-07-04T20:20:05.70363+01:00"
+  microservice:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-10-11T14:27:04.209957+01:00"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.2.2
+    description: Generic helm chart for Energy Web Foundation microservices
+    digest: 6cab918a4b5a664dcf012656733cb83fd752520f1561d92b2998cc0e721d0f89
+    keywords:
+    - EnergyWeb
+    - Blockchain
+    maintainers:
+    - email: devops@energyweb.org
+      name: EWF DevOps Team
+    name: microservice
+    type: application
+    urls:
+    - https://energywebfoundation.github.io/generic-microservices-helm/microservice-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-10-11T14:27:04.205597+01:00"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.2.2
+    description: Generic helm chart for Energy Web Foundation microservices
+    digest: fe9b7d595e4992cef8d1ee2bdf6c199615b8867f8437ed80a50ce3452ced2141
+    keywords:
+    - EnergyWeb
+    - Blockchain
+    maintainers:
+    - email: devops@energyweb.org
+      name: EWF DevOps Team
+    name: microservice
+    type: application
+    urls:
+    - https://energywebfoundation.github.io/generic-microservices-helm/microservice-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-10-11T14:27:04.203596+01:00"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.2.2
+    description: Generic helm chart for Energy Web Foundation microservices
+    digest: 7851019ff1b863ccb27fcc851b574d30a64307cbe65965e1f478efa67105c34e
+    keywords:
+    - EnergyWeb
+    - Blockchain
+    maintainers:
+    - email: devops@energyweb.org
+      name: EWF DevOps Team
+    name: microservice
+    type: application
+    urls:
+    - https://energywebfoundation.github.io/generic-microservices-helm/microservice-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-10-11T14:27:04.201998+01:00"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.2.2
+    description: Generic helm chart for Energy Web Foundation microservices
+    digest: 87cd5fba04072def319b761bf9f92ada5fa477c61f75014b83b8c35abdfbb08a
+    keywords:
+    - EnergyWeb
+    - Blockchain
+    maintainers:
+    - email: devops@energyweb.org
+      name: EWF DevOps Team
+    name: microservice
+    type: application
+    urls:
+    - https://energywebfoundation.github.io/generic-microservices-helm/microservice-1.0.0.tgz
+    version: 1.0.0
+generated: "2023-10-11T14:27:04.192407+01:00"

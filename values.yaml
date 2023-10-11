@@ -98,6 +98,7 @@ service:
 ingress:
   enabled: false
   className: ""
+  servicePortName: ""
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
@@ -106,7 +107,6 @@ ingress:
       paths:
         - path: /
           pathType: ImplementationSpecific
-          pathServiceName: ""
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:

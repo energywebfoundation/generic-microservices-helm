@@ -1,3 +1,4 @@
+{{- $servicePortName := .Values.service.portName -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -46,7 +47,11 @@ spec:
           {{- end }}
           ports:
           {{- range $key, $value := $.Values.container.ports }}
+            {{- if $servicePortName }}
+            - name: {{ $servicePortName }}
+            {{- else }}          
             - name: {{ $key }}
+          {{- end }}
               containerPort: {{ $value }}
               protocol: TCP
           {{- end }}
@@ -99,6 +104,11 @@ spec:
           {{- include "common.tplvalues.render" ( dict "value" .Values.sidecars "context" $) | nindent 8 }}
           {{- end }}
           volumeMounts:
+          {{- range $path, $config := .Values.configFiles }}
+            - name: config
+              mountPath: {{ $.Values.configFilesMountPath }}/{{ $path }}
+              subPath: {{ $path }}
+          {{- end -}}
           {{- if .Values.pvc.enabled }}
             - mountPath: {{ .Values.pvc.mountPath }}
               {{- if .Values.pvc.subPath }}
@@ -111,6 +121,11 @@ spec:
           {{- end }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
       volumes:
+      {{- if .Values.configFiles }}
+        - name: config
+          configMap:
+            name: {{ include "microservice.fullname" . }}-cm
+      {{- end }}
       {{- if .Values.pvc.enabled }}
         - name: {{ .Values.pvc.name | default (printf "%s-volume" (include "microservice.fullname" .)) }}
           persistentVolumeClaim:

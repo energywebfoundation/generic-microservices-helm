@@ -1,0 +1,14 @@
+{{- if .Values.configFiles }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "microservice.fullname" . }}-cm
+  labels:
+    {{- include "microservice.labels" . | nindent 4 }}
+data:
+{{- range $path, $config := .Values.configFiles }}
+  {{ $path }}: |
+{{ $config | indent 4 -}}
+{{- end -}}
+{{- end -}}

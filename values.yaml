@@ -90,6 +90,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
+  portName: ""
   type: ClusterIP
   ports:
     - port: 80
@@ -175,3 +176,15 @@ initContainers: {}
 #     envFrom:
 #       - secretRef:
 #           name: some-secret-ref
+
+# Allows you to add any config files in specified mount path
+configFiles: {}
+  # config.yml: |
+  #   key: value
+  # example.json: |
+  #   {
+  #     "key1": "value1",
+  #     "key2": "value2"
+  #   }
+
+configFilesMountPath: /usr/share/config

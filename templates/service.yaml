@@ -1,4 +1,5 @@
 {{ $servicePorts := .Values.service.ports }}
+{{- $servicePortName := .Values.ingress.servicePortName -}}
 apiVersion: v1
 kind: Service
 metadata:
@@ -12,7 +13,11 @@ spec:
     - port: {{ .port }}
       targetPort: {{ .name }}
       protocol: TCP
+      {{- if $servicePortName }}
+      name: {{ $servicePortName }}
+      {{- else }}    
       name: {{ .name }}
+      {{- end }}
   {{- end }}
   selector:
     {{- include "microservice.selectorLabels" . | nindent 4 }}

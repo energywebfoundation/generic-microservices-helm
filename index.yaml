@@ -5,7 +5,7 @@ entries:
       category: Infrastructure
     apiVersion: v2
     appVersion: 2.2.2
-    created: "2023-10-19T14:32:14.016904+01:00"
+    created: "2023-10-19T16:42:42.037271+01:00"
     description: A Library Helm Chart for grouping common logic between bitnami charts.
       This chart is not deployable by itself.
     digest: d589f61a6529a986b5294bb76843431b8b0ab5816d3876d0b0fd631b8cc55ebe
@@ -31,7 +31,7 @@ entries:
   generic-microservice-helm:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-10-19T14:32:14.008817+01:00"
+    created: "2023-10-19T16:42:42.029374+01:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -39,7 +39,7 @@ entries:
       - bitnami-common
       version: 2.2.2
     description: Generic helm chart for Energy Web Foundation microservices
-    digest: 766b8c9fe768f2913a6d3189ee2fac3eaff41a60caca5f0144fb15fc0439e204
+    digest: 48ca7a27b8539bec3907c6f85e01a3026450a48fc49b33f2ae364a9634e1b3a1
     keywords:
     - EnergyWeb
     - Blockchain
@@ -53,7 +53,7 @@ entries:
     version: 1.2.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-10-19T14:32:14.001721+01:00"
+    created: "2023-10-19T16:42:42.016978+01:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -75,7 +75,7 @@ entries:
     version: 1.2.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-10-19T14:32:13.996955+01:00"
+    created: "2023-10-19T16:42:42.011936+01:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -98,7 +98,7 @@ entries:
   microservice:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-10-19T14:32:14.016533+01:00"
+    created: "2023-10-19T16:42:42.036887+01:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -120,7 +120,7 @@ entries:
     version: 1.0.3
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-10-19T14:32:14.013614+01:00"
+    created: "2023-10-19T16:42:42.03406+01:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -142,7 +142,7 @@ entries:
     version: 1.0.2
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-10-19T14:32:14.011859+01:00"
+    created: "2023-10-19T16:42:42.032054+01:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -164,7 +164,7 @@ entries:
     version: 1.0.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-10-19T14:32:14.010032+01:00"
+    created: "2023-10-19T16:42:42.030608+01:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -184,4 +184,4 @@ entries:
     urls:
     - https://energywebfoundation.github.io/generic-microservices-helm/microservice-1.0.0.tgz
     version: 1.0.0
-generated: "2023-10-19T14:32:13.995843+01:00"
+generated: "2023-10-19T16:42:42.010903+01:00"

@@ -1,0 +1,27 @@
+{{- if .Values.ALBIngressService.enabled }}
+{{- $servicePorts := .Values.ALBIngressService.ports }}
+{{- $paths := .Values.ALBIngressService.paths -}}
+
+{{- range $index, $path := $paths }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: alb-{{ include "microservice.fullname" . }}-{{ $path.name }}
+  labels:
+    {{- include "microservice.labels" . | nindent 4 }}
+    path: {{ $path.name }}
+spec:
+  type: {{ $.Values.ALBIngressService.type }}
+  ports:
+    {{- range $key, $value := $servicePorts }}
+    - port: {{ $value.port }}
+      targetPort: {{ $value.targetPort }}
+      protocol: TCP
+      name: {{ $value.name }}
+    {{- end }}
+  selector:
+    {{- include "microservice.selectorLabels" . | nindent 4 }}
+    path: {{ $path.name }}
+---
+{{- end }}
+{{- end }}

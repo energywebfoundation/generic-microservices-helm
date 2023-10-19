@@ -1,12 +1,16 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "microservice.fullname" . -}}
-{{- $svcPort := .Values.service.ports -}}
-{{- $servicePortName := .Values.service.portName -}}
 {{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
   {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
   {{- $_ := set .Values.ingress.annotations "kubernetes.io/ingress.class" .Values.ingress.className}}
   {{- end }}
 {{- end }}
+
+{{- if .Values.ALBIngressService.enabled }}
+{{- $servicePorts := .Values.ALBIngressService.ports }}
+{{- $paths := .Values.ALBIngressService.paths -}}
+{{- end }}
+
 {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1
 {{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
@@ -42,6 +46,25 @@ spec:
     - host: {{ .host | quote }}
       http:
         paths:
+          {{- if .Values.ALBIngressService.enabled }}
+          {{- range $index, $path := $paths }}
+          - path: {{ $path.path }}
+            {{- if and $path.pathType (semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion) }}
+            pathType: {{ $path.pathType }}
+            {{- end }}
+            backend:
+              {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
+              service:
+                name: alb-{{ $fullName }}-{{ $path.name }}
+                port:
+                  name: {{ (index $servicePorts $index).name }}
+                  number: {{ (index $servicePorts $index).port }}
+              {{- else }}
+              serviceName: alb-{{ $fullName }}-{{ $path.name }}
+              servicePort: {{ (index $servicePorts $index).port }}
+              {{- end }}
+          {{- end }}
+          {{- else }}
           {{- range .paths }}
           - path: {{ .path }}
             {{- if and .pathType (semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion) }}
@@ -50,19 +73,14 @@ spec:
             backend:
               {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
               service:
-              {{- range $key, $value := $svcPort }}
                 name: {{ $fullName }}
                 port:
-                  {{- if $servicePortName }}
-                  name: {{ $servicePortName }}
-                  {{- else }}
-                  number: {{ .port }}
-                  {{- end }}                  
+                  number: {{ .servicePort }}
               {{- else }}
               serviceName: {{ $fullName }}
-              servicePort: {{ .port }}
+              servicePort: {{ .servicePort }}
               {{- end }}
-              {{- end }}
+          {{- end }}
           {{- end }}
     {{- end }}
 {{- end }}

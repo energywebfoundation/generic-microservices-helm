@@ -1,15 +1,18 @@
-{{ $servicePorts := .Values.service.ports }}
+{{- if .Values.ingress.multipleServices }}
+{{- $servicePorts := .Values.service.ports }}
 {{- $servicePortName := .Values.service.portName -}}
+{{- range .Values.ingress.hosts }}
+{{- range .paths }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "microservice.fullname" . }}
+  name: {{ include "microservice.fullname" $ }}-{{ .path | trimPrefix "/" }}
   labels:
-    {{- include "microservice.labels" . | nindent 4 }}
+    {{- include "microservice.labels" $ | nindent 4 }}
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ $.Values.service.type }}
   ports:
-  {{- range $key, $value := $servicePorts }}
+    {{- range $key, $value := $servicePorts }}
     - port: {{ .port }}
       {{- if $servicePortName }}
       targetPort: {{ $servicePortName }}
@@ -22,6 +25,38 @@ spec:
       {{- else }}    
       name: {{ .name }}
       {{- end }}
-  {{- end }}
+    {{- end }}
+  selector:
+    {{- include "microservice.selectorLabels" $ | nindent 4 }}
+---
+{{- end }}
+{{- end }}
+{{- else }}
+{{- $servicePorts := .Values.service.ports }}
+{{- $servicePortName := .Values.service.portName -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "microservice.fullname" . }}
+  labels:
+    {{- include "microservice.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    {{- range $key, $value := $servicePorts }}
+    - port: {{ .port }}
+      {{- if $servicePortName }}
+      targetPort: {{ $servicePortName }}
+      {{- else }}    
+      targetPort: {{ .name }}
+      {{- end }}
+      protocol: TCP
+      {{- if $servicePortName }}
+      name: {{ $servicePortName }}
+      {{- else }}    
+      name: {{ .name }}
+      {{- end }}
+    {{- end }}
   selector:
     {{- include "microservice.selectorLabels" . | nindent 4 }}
+{{- end }}

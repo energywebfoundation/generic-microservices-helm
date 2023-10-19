@@ -189,18 +189,12 @@ configFiles: {}
 
 configFilesMountPath: /usr/share/config
 
-ALBIngressService:
+extraIngressPaths:
   enabled: false
-  type: ClusterIP
-  ports:
-    - name: http
-      port: 80
-      targetPort: http
-    - name: http
-      port: 80
-      targetPort: http
   paths:
-    - name: api
-      backendServiceName: api-service
-    - name: app
-      backendServiceName: app-service
+    - name: foo
+      path: /api/foo
+      backendServiceName: api-foo-service
+    - name: bar
+      path: /api/bar
+      backendServiceName: api-bar-service

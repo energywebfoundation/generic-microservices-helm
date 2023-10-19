@@ -1,27 +1,20 @@
-{{- if .Values.ALBIngressService.enabled }}
-{{- $servicePorts := .Values.ALBIngressService.ports }}
-{{- $paths := .Values.ALBIngressService.paths -}}
-
-{{- range $index, $path := $paths }}
+{{- if .Values.extraIngressPaths.enabled -}}
+{{- range .Values.extraIngressPaths.paths }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: alb-{{ include "microservice.fullname" . }}-{{ $path.name }}
+  name: {{ $.Release.Name }}-{{ .name }}
   labels:
-    {{- include "microservice.labels" . | nindent 4 }}
-    path: {{ $path.name }}
+    {{- include "microservice.labels" $. | nindent 4 }}
 spec:
-  type: {{ $.Values.ALBIngressService.type }}
+  type: {{ $.Values.service.type }}
   ports:
-    {{- range $key, $value := $servicePorts }}
-    - port: {{ $value.port }}
-      targetPort: {{ $value.targetPort }}
+    - port: {{ index $.Values.service.ports 0 }.port }}
+      targetPort: {{ if $.Values.service.portName }}{{ $.Values.service.portName }}{{ else }}{{ index $.Values.service.ports 0 }.name }}{{ end }}
       protocol: TCP
-      name: {{ $value.name }}
-    {{- end }}
+      name: {{ if $.Values.service.portName }}{{ $.Values.service.portName }}{{ else }}{{ index $.Values.service.ports 0 }.name }}{{ end }}
   selector:
-    {{- include "microservice.selectorLabels" . | nindent 4 }}
-    path: {{ $path.name }}
+    {{- include "microservice.selectorLabels" $. | nindent 4 }}
 ---
 {{- end }}
 {{- end }}

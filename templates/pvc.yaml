@@ -1,4 +1,3 @@
-# dynamically provision volume
 {{- if .Values.pvc.enabled }}
 apiVersion: v1
 kind: PersistentVolumeClaim

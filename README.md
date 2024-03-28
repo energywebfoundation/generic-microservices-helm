@@ -1,6 +1,6 @@
 # generic-microservice-helm
 
-![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.0](https://img.shields.io/badge/AppVersion-1.16.0-informational?style=flat-square)
+![Version: 1.3.0](https://img.shields.io/badge/Version-1.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.0](https://img.shields.io/badge/AppVersion-1.16.0-informational?style=flat-square)
 
 Generic helm chart for Energy Web Foundation microservices
 
@@ -78,6 +78,8 @@ pre-commit install-hooks
 | livenessProbe.timeoutSeconds | int | `10` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
+| pdb.enabled | bool | `false` |  |
+| pdb.minAvailable | int | `1` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | pvc.accessModes | string | `"ReadWriteOnce"` |  |
@@ -100,6 +102,7 @@ pre-commit install-hooks
 | sealedSecret.enabled | bool | `false` |  |
 | sealedSecret.encryptedData | object | `{}` |  |
 | securityContext | object | `{}` |  |
+| service.portName | string | `""` |  |
 | service.ports[0].name | string | `"http"` |  |
 | service.ports[0].port | int | `80` |  |
 | service.type | string | `"ClusterIP"` |  |

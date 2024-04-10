@@ -75,7 +75,6 @@ externalSecret:
   secretStoreRef:
     name: cluster-secret-store
   target:
-    name: app-secret-external
     creationPolicy: Owner
   dataFrom:
     key: app-secret

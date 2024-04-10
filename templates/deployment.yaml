@@ -76,6 +76,10 @@ spec:
             - secretRef:
                 name: {{ include "microservice.fullname" . }}-sealedsecret
             {{- end }}
+            {{- if .Values.externalSecret.enabled }}
+            - secretRef:
+                name: {{ .Values.externalSecret.name }}
+            {{- end }}            
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
             httpGet:

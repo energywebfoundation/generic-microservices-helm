@@ -68,6 +68,18 @@ sealedSecret:
   encryptedData: {}
 
 
+externalSecret:
+  enabled: false
+  name: app-secret-external
+  refreshInterval: 1m
+  secretStoreRef:
+    name: cluster-secret-store
+  target:
+    name: app-secret-external
+    creationPolicy: Owner
+  dataFrom:
+    key: app-secret
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""

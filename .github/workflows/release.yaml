@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: styfle/cancel-workflow-action@0.11.0
+      - uses: styfle/cancel-workflow-action@0.12.1
         with:
           access_token: ${{ github.token }}
 
@@ -26,7 +26,7 @@ jobs:
       changelog: ${{ steps.tag_version.outputs.changelog }}
       tag: ${{ steps.tag_version.outputs.new_tag }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       # Take the 1st version from Chart.yaml
       - name: Get Chart Version
@@ -50,13 +50,13 @@ jobs:
 
     steps:
       - name: Create a GitHub release
-        uses: ncipollo/release-action@v1.12.0
+        uses: ncipollo/release-action@v1.14.0
         with:
           tag: ${{  needs.push-tag.outputs.tag  }}
           name: Release ${{  needs.push-tag.outputs.tag  }}
           body: ${{  needs.push-tag.outputs.changelog  }}
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Push Helm chart to OCI compatible registry (Github)
         uses: bsord/helm-push@v4.2.0

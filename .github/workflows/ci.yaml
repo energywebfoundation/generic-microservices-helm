@@ -58,4 +58,4 @@ jobs:
           kubectl_version: ${{ matrix.k8s-version }}
 
       - name: Run chart-testing (install)
-        run: ct install --charts . --helm-extra-args '--timeout 60s'
+        run: ct install --config ci/config.yaml

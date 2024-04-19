@@ -33,7 +33,7 @@ jobs:
     needs: [helm-check]
     strategy:
       matrix:
-        k8s-version: [ v1.27, v1.26 ]
+        k8s-version: [ v1.27.12, v1.26.15 ]
     steps:
       - uses: actions/checkout@v4
 

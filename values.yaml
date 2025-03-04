@@ -83,6 +83,11 @@ serviceAccount:
 
 podAnnotations: {}
 
+metrics:
+  enabled: false
+  path: "/metrics"
+  port: ""  # If empty, will default to service.ports[0].port
+
 podSecurityContext: {}
   # fsGroup: 2000
 

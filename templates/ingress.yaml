@@ -19,10 +19,14 @@ metadata:
   name: {{ $fullName }}
   labels:
     {{- include "microservice.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
   annotations:
+    {{- if .Values.metrics.enabled }}
+    prometheus.io/scrape: "true"
+    prometheus.io/path: {{ .Values.metrics.path | default "/metrics" | quote }}
+    {{- end }}
+    {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
-  {{- end }}
+    {{- end }}
 spec:
   {{- if and .Values.ingress.className (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion) }}
   ingressClassName: {{ .Values.ingress.className }}

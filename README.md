@@ -34,6 +34,19 @@ pre-commit install
 pre-commit install-hooks
 ```
 
+## Prometheus Metrics Scraping
+
+This chart provides automatic Prometheus metrics scraping configuration through annotations. To enable metrics scraping for your service:
+
+```yaml
+metrics:
+  enabled: true
+  path: "/metrics"  # Optional: defaults to /metrics
+  port: "8080"      # Optional: if not specified, uses the first service port
+```
+
+When enabled, these annotations (`prometheus.io/scrape: "true"`, `prometheus.io/path`, and `prometheus.io/port`) will be automatically added to your pods, making them discoverable by Prometheus.
+
 ## Values
 
 | Key | Type | Default | Description |
@@ -43,6 +56,9 @@ pre-commit install-hooks
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
+| metrics.enabled | bool | `false` | Enable Prometheus metrics scraping |
+| metrics.path | string | `"/metrics"` | Path where metrics are exposed |
+| metrics.port | string | `""` | Port where metrics are exposed (defaults to service port) |
 | configFiles | object | `{}` |  |
 | configFilesMountPath | string | `"/usr/share/config"` |  |
 | container.ports.http | int | `80` |  |

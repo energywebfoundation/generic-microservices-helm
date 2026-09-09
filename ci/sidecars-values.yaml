@@ -1,0 +1,24 @@
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+# Regression coverage for a bug where sidecars would swallow (or get
+# clobbered by) the main container's own volumeMounts, because the
+# sidecars block was rendered before the main container's volumeMounts
+# section was fully closed. See templates/deployment.yaml history.
+extraVolumes:
+  - name: shared-data
+    emptyDir: {}
+
+extraVolumeMounts:
+  - name: shared-data
+    mountPath: /var/shared
+
+sidecars:
+  - name: sidecar
+    image: busybox
+    command: ["sh", "-c", "sleep 3600"]
+    volumeMounts:
+      - name: shared-data
+        mountPath: /var/shared
